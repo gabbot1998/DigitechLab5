@@ -1,0 +1,34 @@
+architecture structural of registerblock is
+    signal r0ToMux : std_logic_vector(7 downto 0);
+    signal r1ToMux : std_logic_vector(7 downto 0);
+    signal regEnaAndNotDEST : std_logic;
+    signal regEnaAndDEST : std_logic;
+begin
+ 
+    R0: entity REG8 port map(
+        CLK => clk,
+        CLR => n_rst,
+        ENA => regEnaAndNotDEST,
+        D => F,
+        Q => r0ToMux
+    );
+   
+    R1: entity REG8 port map(
+        CLK => clk,
+        CLR => n_rst,
+        ENA => regEnaAndDEST,
+        D => F,
+        Q =>  r1ToMux
+     );
+     
+     Muxi: entity MUX2x8 port map(
+        IN0 => r0ToMux,
+        IN1 => r1ToMux,
+        SEL => DEST,
+        O => RegOut
+     );
+     
+   regEnaAndNotDEST <= RegEna and not DEST;
+   regEnaAndDEST <= RegEna and DEST;
+   
+end architecture;
