@@ -1,0 +1,48 @@
+architecture structural of adressvaljare is
+   signal   pc          : std_logic_vector(5 downto 0);
+   signal   pc_padd     : std_logic_vector(7 downto 0);
+   signal   pc_p_one    : std_logic_vector(7 downto 0);
+   signal   next_addr   : std_logic_vector(5 downto 0);
+   signal   tos         : std_logic_vector(5 downto 0);
+ 
+   
+begin
+     pc_padd <= "00" & pc;
+   
+    MuxiBoi: entity MUX3x6 port map(
+        IN0 => pc_p_one(5 downto 0),
+        IN1 => tos,
+        IN2 => DATA,
+        SEL => AddrSrc,
+        O => next_addr
+    );
+   
+    Stackina: entity stack port map(
+        D       => pc_p_one(5 downto 0),
+        ToS     => tos,
+        clk     => clk,
+        n_rst   => n_rst,
+        StackOp => StackOp
+    );
+   
+    PcBoi: entity REG6 port map(
+        CLK => clk,
+        CLR => n_rst,
+        ENA => '1',
+        D => next_addr,
+        Q => pc
+    );
+   
+    Logic: entity ALU8 port map(
+         A => pc_padd,
+         B => "00000001",
+         S => "010",
+         Z => open,
+         F => pc_p_one
+    );
+   
+   
+    A <= next_addr;
+    pc_debug <= pc;
+   
+end architecture;
