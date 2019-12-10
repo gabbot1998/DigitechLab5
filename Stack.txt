@@ -1,0 +1,77 @@
+    sr_0: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(5),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(5),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
+    
+    sr_1: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(4),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(4),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
+    
+    sr_2: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(3),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(3),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
+    
+    sr_3: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(2),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(2),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
+    
+    sr_4: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(1),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(1),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
+    
+    sr_5: entity SR4 port map(
+        CLR => n_rst,
+        SR_SER => D(0),
+        SL_SER => '0',
+        S1 => StackOp(1),
+        S0 => StackOp(0),
+        QA => Tos(0),
+        QB => open,
+        QC => open,
+        QD => open,
+        CLK => clk
+    );
