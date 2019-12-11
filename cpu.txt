@@ -1,0 +1,48 @@
+architecture structural of cpu is
+    signal berakningToInstr : std_logic;
+    signal StackOpInstrToAddr : std_logic_vector(1 downto 0);
+    signal ASrcInstToAddr : std_logic_vector(1 downto 0);
+    signal ALUOpInstrToAddr : std_logic_vector(2 downto 0);
+    signal AddrSrcInstrToAddr : std_logic;
+    signal RegEnaInstToAddr : std_logic;
+    
+begin
+
+address: entity adressvaljare port map(
+     clk      =>     clk,
+     n_rst    =>   n_rst,
+     DATA     =>       I(5 downto 0),
+     AddrSrc  =>       ASrcInstToAddr,
+     StackOp  =>  StackOpInstrToAddr,     
+     
+     A        =>       A,
+     pc_debug => pc_debug
+);
+
+counterBoi: entity berakningsenhet port map(
+     clk    => clk,
+     n_rst  => n_rst,
+     DATA   => I(7 downto 0),
+     INPUT  => INPUT,
+     DEST   => I(8),
+     ALUSrc => AddrSrcInstrToAddr,
+     ALUOp  => ALUOpInstrToAddr,
+     RegEna => RegEnaInstToAddr,
+        
+     OUTPUT => OUTPUT,
+     Z      => berakningToInstr
+);
+
+instructuskibidibap: entity instruktionsavkodare port map(
+     OPCODE => I(12 downto 9),
+     Z => berakningToInstr,
+     
+     StackOp => StackOpInstrToAddr,
+     AddrSrc => ASrcInstToAddr,
+     ALUOp => ALUOpInstrToAddr,
+     ALUSrc => AddrSrcInstrToAddr,
+     RegEna => RegEnaInstToAddr,
+     OutEna => OutEna
+);
+
+end architecture;
