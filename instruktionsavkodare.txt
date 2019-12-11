@@ -1,0 +1,63 @@
+architecture behaviour of instruktionsavkodare is
+    -- Kanske måste ha med defaultvärden i when satser. Fråga på labben.
+    -- kanske... Syntaxfel någonstans.
+begin
+    OutEna <= '0';
+    RegEna <= '0';
+    StackOp <= STACK_OP_HOLD;
+    AddrSrc <= ADDR_PC_PLUS_ONE;
+    
+    case OPCODE is
+        when OPCODE_CALL => 
+            StackOp <= STACK_OP_PUSH;
+            AddrSrc <= ADDR_DATA;
+        
+        when OPCODE_RET =>
+            StackOp <= STACK_OP_POP;
+            AddrSrc <= ADDR_TOS;
+        
+        when OPCODE_BZ =>
+            if (Z = '0') then 
+                AddrSrc <= ADDR_DATA;  
+            elsif Z = '1' then
+                AddrSrc <= ADDR_PC_PLUS_ONE;
+            end if;    
+        
+        when OPCODE_B =>
+            AddrSrc <= ADDR_DATA;
+            
+        when OPCODE_ADD => 
+            ALUOp <= "010"; -- 010 code for add in ALU
+            ALUSrc <= '0'; -- 0 is the code for ALUSrc RegOut
+            RegEna <= '1'; 
+            
+        when OPCODE_SUB => 
+               ALUOp <= "011"; -- 011 code for sub in ALU
+               ALUSrc <= '0'; -- 0 is the code for ALUSrc RegOut
+               RegEna <= '1';
+               
+        when OPCODE_LD =>
+            ALUOp <= "000"; -- 000 is the code for A in ALU
+            RegEna <= '1';
+            
+        when OPCODE_IN => 
+            ALUSrc <= '1';
+            RegEna <= '1';
+        
+        when OPCODE_OUT =>
+            ALUSrc => '0';
+            OutEna => '1';            
+                  
+        when OPCODE_AND => 
+              ALUOp <= "100"; -- 100 code for and in ALU
+              ALUSrc <= '0'; -- 0 is the code for ALUSrc RegOut
+              RegEna <= '1';   
+              
+        when OPCODE_RETDATA =>
+              ALUOp => "000";
+              AddrSrc => ADDR_DATA;
+        
+        when others => ALUOp <= "000";      
+                                 
+    end case;        
+end architecture;
