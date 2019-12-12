@@ -60,9 +60,11 @@ begin
             AddrSrc <= ADDR_TOS;
         
         when OPCODE_BZ =>
-            if (Z = '0') then 
+            ALUOp <= "001";
+            ALUSrc <= '0';
+            if (Z = '1') then 
                 AddrSrc <= ADDR_DATA;  
-            elsif Z = '1' then
+            elsif Z = '0' then
                 AddrSrc <= ADDR_PC_PLUS_ONE;
             end if;    
         
@@ -85,10 +87,12 @@ begin
             
         when OPCODE_IN => 
             ALUSrc <= '1';
+            ALUOp <= "001";
             RegEna <= '1';
         
         when OPCODE_OUT =>
             ALUSrc <= '0';
+            ALUOp <= "001";
             OutEna <= '1';            
                   
         when OPCODE_AND => 
@@ -101,7 +105,3 @@ begin
               AddrSrc <= ADDR_DATA;
         
         when others => ALUOp <= "000";      
-                                 
-    end case;
-    end process;        
-end architecture;
