@@ -45,8 +45,10 @@ end entity;
 architecture structural of berakningsenhet is
     
     signal regO: STD_LOGIC_VECTOR(7 downto 0);
-    signal aliToReg: STD_LOGIC_VECTOR(7 downto 0);
+    signal FToOut: STD_LOGIC_VECTOR(7 downto 0);
+--    signal aliToReg: STD_LOGIC_VECTOR(7 downto 0);
     signal muxToAli: STD_LOGIC_VECTOR(7 downto 0);
+    
 begin
 
     Ali: entity ALU8 port map(
@@ -55,7 +57,7 @@ begin
         S => ALUOp,
         
         Z => Z,
-        F => aliToReg
+        F => FToOut
     );
     
     muks: entity MUX2x8 port map(
@@ -69,13 +71,14 @@ begin
     reggie: entity registerblock port map(
         clk => clk,
         n_rst => n_rst,
-        F => regO,
+        F => FToOut,
         DEST => DEST,
         RegEna => RegEna,
         
         RegOut => regO
     );
     
-    OUTPUT <= regO;
+    OUTPUT <= FToOut;
+   
     
 end architecture;
