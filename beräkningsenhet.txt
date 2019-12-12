@@ -61,8 +61,8 @@ begin
     );
     
     muks: entity MUX2x8 port map(
-        IN0 => INPUT,
-        IN1 => regO,
+        IN0 => regO,
+        IN1 => INPUT,
         SEL => ALUSrc,
         
         O => muxToAli
