@@ -1,0 +1,64 @@
+0E00;Spara state i r0
+0801;Addera 1 till r0
+1201;maskerar r0 till r0
+041C;Hoppa till natt om r0 = 0.
+0D0C;DAG//  sätt färgen  i r1. 1
+0016;Hoppa till fördröjning.
+0D0A;sätt färgen i r1. 2
+0016;Hoppa till fördröjning.
+0D09;sätt färgen i r1. 3
+0016;Hoppa till fördröjning
+0D19;sätt färgen i r1. 4
+0016;Hoppa till fördröjning.
+0D21;. sätt färgen i r1. 5
+0016;Hoppa till fördröjning.
+0D11;sätt färgen i r1. 6
+0016;Hoppa till fördröjning.
+0D09;sätt färgen i r1. 7
+0016;Hoppa till fördröjning.
+0D0B;sätt färgen i r1. 8
+0016;Hoppa till fördröjning.
+041C;om r0 = 0 hoppa till natt +++++++++++++
+0600;Hoppar till rad0
+1100;Output färg in r1 -------------------------loop
+0DFF;Fördröjning. sätt r1 till 256
+0B01;r1 = r1 - 1
+051B;Hoppa till 27 om  r1 = 0
+0618;hoppa upp till 24
+0200;Return from fördröjning ------------------------
+0D0C;NATT// sätt färg 1
+1100;Output färg
+0E00;spara state i r0
+0802;addera 2 till r0
+1202;maskera med 00000010 r0
+0404;hoppa till rad4 om bil  r0 = 0
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
