@@ -1,0 +1,64 @@
+0E00;IN till r0 State 1. --------------------------------------------------
+080C;addera 1 till G1 och 1 till G2
+120C;maskera r0 till r0
+040C;if G1 = 1 och G2 = 0 hoppa till State 2 addition.
+0E00;IN till r0
+0008;addera 1 till G2
+120C;maskera r0 till r0
+040C;if G1 = 0 och G2 = 1 hoppa till State 2 subtraktion
+0000;else loopa State 1
+0901;lägg till 1 från r1. State 2 addition -----------------------------------------------------
+060C;Hoppa till state 2 loop GLÖM INTE ADDRESS
+0B01;ta bort 1 från r1. State 2 subtraction -------------------------------------------------------
+0E00;IN till r0 State2 loop-----------------------------------------
+120C;maskera r0 till r0
+0400;if G1 = 0 och G2 = 0 hoppa till State 1 output 10
+1100;output r1
+060C;loopa State 2
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
